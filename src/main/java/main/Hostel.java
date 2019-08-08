@@ -34,11 +34,16 @@ public class Hostel{
 		   try{
 	             BufferedReader br = new BufferedReader(new FileReader("hostel.txt"));
 	               String line = null;
-	            
+	               String names=null;
+	               names=name;
 	               //write your code here !!!
 	               while ((line = br.readLine()) != null) {
 		               String[] splited = line.split("\\s+");
 		               String checkName = splited[0];
+		               if(checkName==names)
+		            	   
+		            		   return false;
+		               
 		               //write your code here !!!
 //		               compare check name with name and return true if present and false if not
 	               }
@@ -50,7 +55,17 @@ public class Hostel{
 			return true;
 	   }
        public static void allotHostel(){
+    	   
     	   //write your code here!!!
+    	   try
+    	   {
+    	   writedata();
+    	   }
+    	   catch(IOException e){
+               //print
+               System.out.println(e);
+    	   }
+    	   
     	   
        }
 
@@ -63,21 +78,35 @@ public class Hostel{
 
                 String reg = Integer.toString(regNo);
                     if(splited[1].equals(reg) ){
-                        return false;
+                        return true;
                     }
                 }
             }catch(Exception e){
                 System.out.println(e);
             }
-            return true;
+            return false;
         }
            
-       public static boolean verifyName(String name){
+       public static boolean verifyName(String name) throws IOException{
     	   boolean chk = true;
+    	   try{
+               BufferedReader br = new BufferedReader(new FileReader("hostel.txt"));
+                 String line = null;
+              while ((line = br.readLine()) != null) {
+                  String[] splited = line.split("\\s+");
+
+                  String nam = name;
+                      if(splited[0].equals(nam) ){
+                          return true;
+                      }
+                  }
+              }catch(IOException e){
+                  System.out.println(e);
+              }
     	   
     	   //write your code here
     	   
-    	   return chk;
+    	   return false;
         }
         
 
